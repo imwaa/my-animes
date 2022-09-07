@@ -138,7 +138,7 @@ onMounted(() => {
     <div class="content has-text-centered">
       <p>
         <strong>Anime tracker</strong> by <a href="https://salhi-walid.netlify.app/">Walid Salhi Belkacem</a>. This app
-        is builded with <a href="https://vuejs.org/">Vue.js</a> & <a href="https://bulma.io/">Bulma</a>.
+        was built with <a href="https://vuejs.org/">Vue.js</a> & <a href="https://bulma.io/">Bulma</a>.
         <br>
         © 2022
       </p>
