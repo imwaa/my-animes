@@ -96,7 +96,7 @@ onMounted(() => {
 
     <div class="wishlisted">
       <h2 class="subtitle">My wishlist</h2>
-      <p v-if="search_results.length < 0">Your wishlist is empty, search for an anime and add it pressing the heart
+      <p v-if="my_anime.length === 0">Your wishlist is empty, search for an anime and add it pressing the heart
         button.
       </p>
       <div class="card-container">
