@@ -43,6 +43,11 @@ const decreaseWatch = anime => {
 onMounted(() => {
   my_anime.value = JSON.parse(localStorage.getItem('my_anime')) || []
 })
+
+const deleteAnime = index => {
+  my_anime.value.splice(index, 1)
+  localStorage.setItem('my_anime', JSON.stringify(my_anime.value))
+}
 </script>
 
 
@@ -100,7 +105,7 @@ onMounted(() => {
         button.
       </p>
       <div class="card-container">
-        <div class="card wishlist-card" v-for="anime in my_anime_asc">
+        <div class="card wishlist-card" v-for="(anime, index) in my_anime" :key="index">
           <div class="card-content">
             <div class="media">
               <div class="media-left">
@@ -116,17 +121,27 @@ onMounted(() => {
           </div>
           <div>
             <div class="wishlist-buttons">
-              <btn class="button is-danger is-light" @click="decreaseWatch(anime)" v-if="anime.watched_episodes > 0">
-                <span class="icon is-small">
-                  <i class="fas fa-minus" aria-hidden="true"></i>
-                </span>
-              </btn>
-              <btn class="button is-danger is-light" @click="increaseWatch(anime)"
-                v-if="anime.total_episodes !== anime.watched_episodes">
-                <span class="icon is-small">
-                  <i class="fas fa-plus" aria-hidden="true"></i>
-                </span>
-              </btn>
+              <div>
+                <btn class="button is-warning is-light" @click="deleteAnime(index)">
+                  <span class="icon is-small">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
+                  </span>
+                </btn>
+              </div>
+              <div class="episodes-increment">
+                <btn class="button is-danger is-light" @click="decreaseWatch(anime)" v-if="anime.watched_episodes > 0">
+                  <span class="icon is-small">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                  </span>
+                </btn>
+                <btn class="button is-danger is-light" @click="increaseWatch(anime)"
+                  v-if="anime.total_episodes !== anime.watched_episodes">
+                  <span class="icon is-small">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                  </span>
+                </btn>
+              </div>
+
             </div>
           </div>
         </div>
@@ -178,8 +193,14 @@ onMounted(() => {
 
 .wishlist-buttons {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   gap: 10px;
   margin: 10px;
+}
+
+.episodes-increment {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
 }
 </style>
